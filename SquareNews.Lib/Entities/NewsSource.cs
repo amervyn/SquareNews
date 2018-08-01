@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SquareNews.Lib.Repository
+namespace SquareNews.Lib.Entities
 {
     public class NewsSource
     {

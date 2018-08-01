@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SquareNews.Lib.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,10 @@ namespace SquareNews.Lib.Repository
 {
     public interface IDataRepository<T>
     {
+        DbFactory DatabaseFactory { get; set; }
         string Create(T obj);
-        T Retrieve(string key);
+        T GetByKey(string key);
+        List<T> GetAll();
         void Update(T obj);
         void Delete(string key);
     }

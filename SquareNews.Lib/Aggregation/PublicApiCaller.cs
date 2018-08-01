@@ -12,17 +12,19 @@ using System.Diagnostics;
 using SquareNews.Lib.Interface;
 using Dapper;
 using SquareNews.Lib.Database;
+using SquareNews.Lib.Repository;
+using SquareNews.Lib.Entities;
 
 namespace SquareNews.Lib.Aggregation
 {
     public class PublicApiCaller : IPublicApiCaller
     {
-        private DbFactory _dbFactory;
+        private IDataRepository<NewsSource> _dataRepository;
 
 
         public PublicApiCaller()
         {
-            _dbFactory = new SqlDbFactory();
+            _dataRepository = new SqlRepository<NewsSource>();
         }
         public async Task<string> CallPublicService()
         {
@@ -33,6 +35,9 @@ namespace SquareNews.Lib.Aggregation
             // init with your API key
             var newsApiClient = new NewsApiClient("5e7564559c884718a1a1cd8955d0f767");
             var articlesResponse = new ArticlesResult();
+
+
+            var sources = _dataRepository.GetAll();
 
 
             await Task.Run(() => articlesResponse = newsApiClient.GetEverything(new EverythingRequest
