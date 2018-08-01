@@ -11,11 +11,19 @@ using Aylien.NewsApi;
 using System.Diagnostics;
 using SquareNews.Lib.Interface;
 using Dapper;
+using SquareNews.Lib.Database;
 
 namespace SquareNews.Lib.Aggregation
 {
     public class PublicApiCaller : IPublicApiCaller
     {
+        private DbFactory _dbFactory;
+
+
+        public PublicApiCaller()
+        {
+            _dbFactory = new SqlDbFactory();
+        }
         public async Task<string> CallPublicService()
         {
             //var url = "https://newsapi.org/v2/top-headlines?" + "country=us&" + "apiKey=5e7564559c884718a1a1cd8955d0f767";
@@ -29,7 +37,7 @@ namespace SquareNews.Lib.Aggregation
 
             await Task.Run(() => articlesResponse = newsApiClient.GetEverything(new EverythingRequest
             {
-                Sources = new List<string> { "bbc-news" }, //get from db
+                Sources = new List<string>(), //get from db
                 SortBy = SortBys.Popularity,
                 Language = Languages.EN,
                 From = DateTime.Today.AddDays(-2)

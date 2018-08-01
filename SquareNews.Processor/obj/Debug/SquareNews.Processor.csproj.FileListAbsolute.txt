@@ -13,3 +13,17 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csproj.CopyComplete
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.exe
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.pdb
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Processor.exe.config
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Processor.exe
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Processor.pdb
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Lib.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NewsAPI.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Newtonsoft.Json.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Lib.pdb
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Lib.dll.config
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NewsAPI.xml
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Newtonsoft.Json.xml
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csprojResolveAssemblyReference.cache
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csproj.CoreCompileInputs.cache
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.exe
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.pdb
