@@ -29,3 +29,5 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\obj\Debug\Squa
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.pdb
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.dll
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.pdb

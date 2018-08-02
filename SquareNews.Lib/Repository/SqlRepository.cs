@@ -37,12 +37,17 @@ namespace SquareNews.Lib.Repository
 
         T IDataRepository<T>.GetByKey(string key)
         {
-            throw new NotImplementedException();
+            using (DatabaseFactory.DatabaseConnection)
+            {
+                string readByKey = "select * from NewsSource where SourceId='" + key +"'";
+
+                return (T)_dbFactory.DatabaseConnection.Query<T>(readByKey).FirstOrDefault();
+            }
         }
 
         List<T> IDataRepository<T>.GetAll()
         {
-            using (_dbFactory.DatabaseConnection)
+            using (DatabaseFactory.DatabaseConnection)
             {
                 string readAllSp = "GetAllNewsSources";
 

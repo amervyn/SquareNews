@@ -8,6 +8,6 @@ namespace SquareNews.Lib.Interface
 {
     public interface IPublicApiCaller
     {
-        Task<string> CallPublicService();
+        Task<bool> CallPublicService();
     }
 }

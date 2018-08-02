@@ -26,18 +26,27 @@ namespace SquareNews.Lib.Aggregation
         {
             _dataRepository = new SqlRepository<NewsSource>();
         }
-        public async Task<string> CallPublicService()
+        public async Task<bool> CallPublicService()
         {
-            //var url = "https://newsapi.org/v2/top-headlines?" + "country=us&" + "apiKey=5e7564559c884718a1a1cd8955d0f767";
+            await CallNewsApi();
 
-            //var client = new WebClient().DownloadString(url);
+            return true;
+        }
 
-            // init with your API key
-            var newsApiClient = new NewsApiClient("5e7564559c884718a1a1cd8955d0f767");
+        private async Task<bool> CallNewsApi()
+        {
+            var newssources = "https://newsapi.org/v2/sources?language=en&apiKey=" + "5e7564559c884718a1a1cd8955d0f767";
+
+            var client = new WebClient().DownloadString(newssources);
+
+            var localSource = _dataRepository.GetByKey("1");
+
+            if (localSource == null)
+                return false;
+
+            // init with API key
+            var newsApiClient = new NewsApiClient(localSource.ApiKey);  //("5e7564559c884718a1a1cd8955d0f767");
             var articlesResponse = new ArticlesResult();
-
-
-            var sources = _dataRepository.GetAll();
 
 
             await Task.Run(() => articlesResponse = newsApiClient.GetEverything(new EverythingRequest
@@ -45,7 +54,8 @@ namespace SquareNews.Lib.Aggregation
                 Sources = new List<string>(), //get from db
                 SortBy = SortBys.Popularity,
                 Language = Languages.EN,
-                From = DateTime.Today.AddDays(-2)
+                From = DateTime.Now.AddMinutes(-30),
+                PageSize = 100
             }));
 
             var sb = new StringBuilder();
@@ -77,10 +87,10 @@ namespace SquareNews.Lib.Aggregation
                     sb.AppendLine(article.PublishedAt.ToString());
                 }
 
-                return sb.ToString();
+                return true;
             }
 
-            return string.Empty;
+            return false;
         }
     }
 }
