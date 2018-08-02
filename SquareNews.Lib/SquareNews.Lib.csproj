@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\NewsApiSource.cs" />
+    <Compile Include="Objects\NewsApiSourceObject.cs" />
+    <Compile Include="Repository\NewsApiSourceRepository.cs" />
     <Compile Include="Aggregation\PublicApiCaller.cs" />
     <Compile Include="Database\DbFactory.cs" />
     <Compile Include="Database\SqlDbFactory.cs" />
@@ -72,7 +75,7 @@
     </Compile>
     <Compile Include="Repository\IDataRepository.cs" />
     <Compile Include="Entities\NewsSource.cs" />
-    <Compile Include="Repository\SqlRepository.cs" />
+    <Compile Include="Repository\NewsSourceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
