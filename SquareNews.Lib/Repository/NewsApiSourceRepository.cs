@@ -37,9 +37,9 @@ namespace SquareNews.Lib.Repository
 
                 string checkExisting = "select count(*) from dbo.NewsApiSource";
 
-                var count = _dbFactory.DatabaseConnection.Execute(checkExisting);
+                var count = _dbFactory.DatabaseConnection.Query<int>(checkExisting).FirstOrDefault();
 
-                if (count <= 0)
+                if (count<=0)
                 {
                     string readAllSp = "insert into dbo.NewsApiSource values(@ApiSourceName, @Name, @Description, @Url, @Category, @Language, @Country, @Enabled)";
 
