@@ -10,10 +10,10 @@ namespace SquareNews.Lib.Repository
     public interface IDataRepository<T>
     {
         DbFactory DatabaseFactory { get; set; }
-        string Create(T obj);
+        T Create(T obj);
         T GetByKey(string key);
         List<T> GetAll();
-        void Update(T obj);
+        bool Update(T obj);
         void Delete(string key);
     }
 }

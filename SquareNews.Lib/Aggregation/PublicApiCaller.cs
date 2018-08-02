@@ -14,32 +14,69 @@ using Dapper;
 using SquareNews.Lib.Database;
 using SquareNews.Lib.Repository;
 using SquareNews.Lib.Entities;
+using Newtonsoft.Json;
+using SquareNews.Lib.Objects;
 
 namespace SquareNews.Lib.Aggregation
 {
     public class PublicApiCaller : IPublicApiCaller
     {
-        private IDataRepository<NewsSource> _dataRepository;
+        private IDataRepository<NewsSource> _newsSourceRepository;
+        private IDataRepository<NewsApiSource> _newsApiSourceRepository;
 
 
         public PublicApiCaller()
         {
-            _dataRepository = new SqlRepository<NewsSource>();
+            _newsApiSourceRepository = new NewsApiSourceRepository();
+            _newsSourceRepository = new NewsSourceRepository();
         }
         public async Task<bool> CallPublicService()
         {
+            await UpdateNewsApiSources();
+
             await CallNewsApi();
 
             return true;
         }
 
+        private async Task<bool> UpdateNewsApiSources()
+        {
+            var newssources = "https://newsapi.org/v2/sources?apiKey=" + "5e7564559c884718a1a1cd8955d0f767";
+
+            var client = new WebClient();
+            var result = await client.DownloadStringTaskAsync(new Uri(newssources));
+
+            if (result != null)
+            {
+                var json = JsonConvert.DeserializeObject<NewsApiSourceObject>(result);
+                if (json != null && json.Status == "ok")
+                {
+                    foreach (var s in json.Sources)
+                    {
+                        var newsApiSource = new NewsApiSource
+                        {
+                            Name = s.Name,
+                            ApiSourceName = s.Id,
+                            Category = s.Category,
+                            Country = s.Country,
+                            Description = s.Description,
+                            Language = s.Language,
+                            Url = s.Url,
+                            Enabled = true
+                        };
+
+                        _newsApiSourceRepository.Create(newsApiSource);
+                    }
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private async Task<bool> CallNewsApi()
         {
-            var newssources = "https://newsapi.org/v2/sources?language=en&apiKey=" + "5e7564559c884718a1a1cd8955d0f767";
-
-            var client = new WebClient().DownloadString(newssources);
-
-            var localSource = _dataRepository.GetByKey("1");
+            var localSource = _newsSourceRepository.GetByKey("1"); //newsapi source
 
             if (localSource == null)
                 return false;
@@ -51,43 +88,17 @@ namespace SquareNews.Lib.Aggregation
 
             await Task.Run(() => articlesResponse = newsApiClient.GetEverything(new EverythingRequest
             {
-                Sources = new List<string>(), //get from db
+                Sources = _newsApiSourceRepository.GetAll().Select(c => c.ApiSourceName).ToList(), //get from db
                 SortBy = SortBys.Popularity,
                 Language = Languages.EN,
                 From = DateTime.Now.AddMinutes(-30),
                 PageSize = 100
             }));
 
-            var sb = new StringBuilder();
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                // total results found
-                //Debug.WriteLine(articlesResponse.TotalResults);
-                // here's the first 20
-                foreach (var article in articlesResponse.Articles)
-                {
-                    // title
-                    //Debug.WriteLine(article.Title);
-                    sb.AppendLine(article.Title);
-                    // author
-                    //Debug.WriteLine(article.Author);
-                    sb.AppendLine(article.Author);
-                    // description
-                    //Debug.WriteLine(article.Description);
-                    sb.AppendLine(article.Description);
-                    // url
-                    //Debug.WriteLine(article.Url);
-                    sb.AppendLine(article.Url);
-                    // image
-                    //Debug.WriteLine(article.UrlToImage);
-                    sb.AppendLine(article.UrlToImage);
-                    // published at
-                    //Debug.WriteLine(article.PublishedAt);
-                    sb.AppendLine(article.PublishedAt.ToString());
-                }
 
-                return true;
             }
 
             return false;

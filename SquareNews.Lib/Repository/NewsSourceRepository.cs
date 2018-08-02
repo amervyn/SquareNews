@@ -10,7 +10,7 @@ using System.Data;
 
 namespace SquareNews.Lib.Repository
 {
-    public class SqlRepository<T> : IDataRepository<T> where T : class
+    public class NewsSourceRepository : IDataRepository<NewsSource>
     {
         private DbFactory _dbFactory;
         public DbFactory DatabaseFactory
@@ -30,37 +30,38 @@ namespace SquareNews.Lib.Repository
             }
         }
 
-        public string Create(T obj)
+
+        public void Delete(string key)
         {
             throw new NotImplementedException();
         }
 
-        T IDataRepository<T>.GetByKey(string key)
+        public NewsSource Create(NewsSource obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public NewsSource GetByKey(string key)
         {
             using (DatabaseFactory.DatabaseConnection)
             {
-                string readByKey = "select * from NewsSource where SourceId='" + key +"'";
+                string readByKey = "select * from NewsSource where SourceId='" + key + "'";
 
-                return (T)_dbFactory.DatabaseConnection.Query<T>(readByKey).FirstOrDefault();
+                return (NewsSource)_dbFactory.DatabaseConnection.Query<NewsSource>(readByKey).FirstOrDefault();
             }
         }
 
-        List<T> IDataRepository<T>.GetAll()
+        public List<NewsSource> GetAll()
         {
             using (DatabaseFactory.DatabaseConnection)
             {
                 string readAllSp = "GetAllNewsSources";
 
-                return _dbFactory.DatabaseConnection.Query<T>(readAllSp, commandType: CommandType.StoredProcedure).ToList();
+                return _dbFactory.DatabaseConnection.Query<NewsSource>(readAllSp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
 
-        public void Update(T obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(string key)
+        public bool Update(NewsSource obj)
         {
             throw new NotImplementedException();
         }

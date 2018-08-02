@@ -18,10 +18,8 @@ namespace SquareNews.Lib.Database
         {
             get
             {
-                if (_connection == null)
-                {
-                    _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["sqlserver"].ConnectionString);
-                }
+                _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["sqlserver"].ConnectionString);
+
                 return _connection;
             }
             set
