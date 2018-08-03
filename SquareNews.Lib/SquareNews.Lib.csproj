@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repository\ArticleRepository.cs" />
+    <Compile Include="Entities\NewsArticle.cs" />
     <Compile Include="Entities\NewsApiSource.cs" />
     <Compile Include="Objects\NewsApiSourceObject.cs" />
     <Compile Include="Repository\NewsApiSourceRepository.cs" />

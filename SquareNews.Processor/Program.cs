@@ -19,6 +19,7 @@ namespace SquareNews.Processor
             {
                 new SquareNewsProcessor()
             };
+
             ServiceBase.Run(ServicesToRun);
         }
     }

@@ -63,16 +63,16 @@ namespace SquareNews.Lib.Repository
 
         public void Delete(string key)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public List<NewsApiSource> GetAll()
         {
             using (DatabaseFactory.DatabaseConnection)
             {
-                string readAllSp = "GetAllNewsApiSources";
+                string readAll = "select * from dbo.NewsApiSource";
 
-                return _dbFactory.DatabaseConnection.Query<NewsApiSource>(readAllSp, commandType: CommandType.StoredProcedure).ToList();
+                return _dbFactory.DatabaseConnection.Query<NewsApiSource>(readAll).ToList();
             }
         }
 
