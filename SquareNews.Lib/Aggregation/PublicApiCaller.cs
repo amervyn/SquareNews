@@ -30,6 +30,7 @@ namespace SquareNews.Lib.Aggregation
         private int _resultsRemaining = 0;
         private int _newsApiPage = 1;
         private Countries _newsApiCountry;
+        private string _apiLookupKey = "1";
 
 
         public PublicApiCaller()
@@ -41,6 +42,8 @@ namespace SquareNews.Lib.Aggregation
         }
         public async Task<bool> CallPublicService()
         {
+            _apiLookupKey = _apiLookupKey == "1" ? "2" : "1";
+
             await UpdateNewsApiSources();
 
             await CallNewsApi();
@@ -50,7 +53,12 @@ namespace SquareNews.Lib.Aggregation
 
         private async Task<bool> UpdateNewsApiSources()
         {
-            var newssources = "https://newsapi.org/v2/sources?apiKey=" + "7ccec5269a994497a486934b8fa1009d";//"5e7564559c884718a1a1cd8955d0f767";
+            var localSource = _newsSourceRepository.GetByKey(_apiLookupKey); //newsapi source
+
+            if (localSource == null)
+                return false;
+
+            var newssources = "https://newsapi.org/v2/sources?apiKey=" + localSource.ApiKey; //"7ccec5269a994497a486934b8fa1009d";//"5e7564559c884718a1a1cd8955d0f767";
 
             var client = new WebClient();
             var result = await client.DownloadStringTaskAsync(new Uri(newssources));
@@ -85,7 +93,7 @@ namespace SquareNews.Lib.Aggregation
 
         private async Task<bool> CallNewsApi()
         {
-            var localSource = _newsSourceRepository.GetByKey("2"); //newsapi source
+            var localSource = _newsSourceRepository.GetByKey(_apiLookupKey); //newsapi source
 
             if (localSource == null)
                 return false;
@@ -126,7 +134,7 @@ namespace SquareNews.Lib.Aggregation
                 Sources = _newsApiSourceRepository.GetAll().Where(c => c.Language == "en").Select(c => c.ApiSourceName).ToList(), //get from db
                 SortBy = SortBys.Popularity,
                 Language = Languages.EN,
-                From = DateTime.Now.AddMinutes(-15),
+                From = DateTime.Now.AddHours(-1),
                 PageSize = pageSize,
                 //Country = _newsApiCountry,
                 Page = _newsApiPage
