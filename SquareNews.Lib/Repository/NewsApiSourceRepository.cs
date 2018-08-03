@@ -37,9 +37,9 @@ namespace SquareNews.Lib.Repository
 
                 string checkExisting = "select count(*) from dbo.NewsApiSource";
 
-                var count = _dbFactory.DatabaseConnection.Execute(checkExisting);
+                var count = _dbFactory.DatabaseConnection.Query<int>(checkExisting).FirstOrDefault();
 
-                if (count <= 0)
+                if (count<=0)
                 {
                     string readAllSp = "insert into dbo.NewsApiSource values(@ApiSourceName, @Name, @Description, @Url, @Category, @Language, @Country, @Enabled)";
 
@@ -63,16 +63,16 @@ namespace SquareNews.Lib.Repository
 
         public void Delete(string key)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public List<NewsApiSource> GetAll()
         {
             using (DatabaseFactory.DatabaseConnection)
             {
-                string readAllSp = "GetAllNewsApiSources";
+                string readAll = "select * from dbo.NewsApiSource";
 
-                return _dbFactory.DatabaseConnection.Query<NewsApiSource>(readAllSp, commandType: CommandType.StoredProcedure).ToList();
+                return _dbFactory.DatabaseConnection.Query<NewsApiSource>(readAll).ToList();
             }
         }
 
