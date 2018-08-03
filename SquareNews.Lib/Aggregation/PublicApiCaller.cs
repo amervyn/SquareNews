@@ -29,6 +29,7 @@ namespace SquareNews.Lib.Aggregation
         private List<NewsArticle> _newsArticles;
         private int _resultsRemaining = 0;
         private int _newsApiPage = 1;
+        private Countries _newsApiCountry;
 
 
         public PublicApiCaller()
@@ -49,7 +50,7 @@ namespace SquareNews.Lib.Aggregation
 
         private async Task<bool> UpdateNewsApiSources()
         {
-            var newssources = "https://newsapi.org/v2/sources?apiKey=" + "5e7564559c884718a1a1cd8955d0f767";
+            var newssources = "https://newsapi.org/v2/sources?apiKey=" + "7ccec5269a994497a486934b8fa1009d";//"5e7564559c884718a1a1cd8955d0f767";
 
             var client = new WebClient();
             var result = await client.DownloadStringTaskAsync(new Uri(newssources));
@@ -84,23 +85,23 @@ namespace SquareNews.Lib.Aggregation
 
         private async Task<bool> CallNewsApi()
         {
-            var localSource = _newsSourceRepository.GetByKey("1"); //newsapi source
+            var localSource = _newsSourceRepository.GetByKey("2"); //newsapi source
 
             if (localSource == null)
                 return false;
 
             // init with API key
             _newsApiClient = new NewsApiClient(localSource.ApiKey);  //("5e7564559c884718a1a1cd8955d0f767");
-                        
+
             await QueryNewsApi(100);
 
-            while(_resultsRemaining>0)
+            while (_resultsRemaining > 0)
             {
                 _newsApiPage++;
                 await QueryNewsApi(100);
             }
-            
-            if(_newsArticles.Any())
+
+            if (_newsArticles.Any())
             {
                 foreach (var a in _newsArticles)
                 {
@@ -112,22 +113,22 @@ namespace SquareNews.Lib.Aggregation
 
                 return true;
             }
-            
 
-            return true;
+            return false;
         }
 
         private async Task<bool> QueryNewsApi(int pageSize)
         {
             var response = new ArticlesResult();
 
-            await Task.Run(() => response = _newsApiClient.GetTopHeadlines(new TopHeadlinesRequest
+            await Task.Run(() => response = _newsApiClient.GetEverything(new EverythingRequest
             {
                 Sources = _newsApiSourceRepository.GetAll().Where(c => c.Language == "en").Select(c => c.ApiSourceName).ToList(), //get from db
-                //SortBy = SortBys.Popularity,
+                SortBy = SortBys.Popularity,
                 Language = Languages.EN,
-                //From = DateTime.Now.AddHours(-1),
+                From = DateTime.Now.AddMinutes(-15),
                 PageSize = pageSize,
+                //Country = _newsApiCountry,
                 Page = _newsApiPage
             }));
 
@@ -141,12 +142,13 @@ namespace SquareNews.Lib.Aggregation
                     {
                         Headline = a.Title,
                         SourceId = 1,
+                        NewsApiSourceId = a.Source.Id,
                         Description = a.Description,
                         IsVisible = true,
                         ImageUrl = a.UrlToImage,
                         Url = a.Url,
                         CreatedOn = DateTime.Now,
-                        PublishedOn = a.PublishedAt.HasValue? a.PublishedAt.Value : DateTime.Now
+                        PublishedOn = a.PublishedAt.HasValue ? a.PublishedAt.Value : DateTime.Now
                     };
 
                     Debug.WriteLine("Writing article: " + a.Title);

@@ -32,19 +32,21 @@ namespace SquareNews.Lib.Repository
 
                 string checkExisting = "select count(*) from dbo.Article where Headline=@headline";
 
-                var count = _dbFactory.DatabaseConnection.Query<int>(checkExisting, new { obj.Headline}).FirstOrDefault();
+                var count = _dbFactory.DatabaseConnection.Query<int>(checkExisting, new { obj.Headline }).FirstOrDefault();
 
                 if (count <= 0)
                 {
-                    string insertArticle = "insert into dbo.Article (Headline, SourceId, Description, ImageUrl, Url,  IsVisible, CreatedOn, PublishedOn) values(@Headline, @SourceId, @Description, @ImageUrl, @Url, @IsVisible, @CreatedOn, @PublishedOn)";
+                    string insertArticle = "insert into dbo.Article (Headline, SourceId, NewsApiSourceId, Description, ImageUrl, Url, Country,  IsVisible, CreatedOn, PublishedOn) values(@Headline, @SourceId, @NewsApiSourceId, @Description, @ImageUrl, @Url, @Country, @IsVisible, @CreatedOn, @PublishedOn)";
 
                     var result = DatabaseFactory.DatabaseConnection.Execute(insertArticle, new
                     {
                         obj.Headline,
                         obj.SourceId,
+                        obj.NewsApiSourceId,
                         obj.Description,
                         obj.ImageUrl,
                         obj.Url,
+                        obj.Country,
                         obj.IsVisible,
                         obj.CreatedOn,
                         obj.PublishedOn
