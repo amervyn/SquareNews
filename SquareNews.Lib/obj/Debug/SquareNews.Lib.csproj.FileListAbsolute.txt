@@ -37,3 +37,6 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NewsAPI.xm
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\Newtonsoft.Json.xml
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\Ninject.xml
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\RestSharp.xml
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.config
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.xml

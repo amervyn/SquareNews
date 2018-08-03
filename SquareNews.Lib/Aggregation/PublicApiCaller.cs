@@ -16,6 +16,7 @@ using SquareNews.Lib.Repository;
 using SquareNews.Lib.Entities;
 using Newtonsoft.Json;
 using SquareNews.Lib.Objects;
+using NLog;
 
 namespace SquareNews.Lib.Aggregation
 {
@@ -31,10 +32,11 @@ namespace SquareNews.Lib.Aggregation
         private int _newsApiPage = 1;
         private Countries _newsApiCountry;
         private string _apiLookupKey = "1";
-
+        private Logger _logger = LogManager.GetCurrentClassLogger();
 
         public PublicApiCaller()
         {
+            _logger.Info("Init Api Caller");
             _newsApiSourceRepository = new NewsApiSourceRepository();
             _newsSourceRepository = new NewsSourceRepository();
             _articleRepository = new ArticleRepository();
@@ -42,6 +44,8 @@ namespace SquareNews.Lib.Aggregation
         }
         public async Task<bool> CallPublicService()
         {
+            _logger.Info("Calling public api services");
+
             _apiLookupKey = _apiLookupKey == "1" ? "2" : "1";
 
             await UpdateNewsApiSources();
@@ -61,15 +65,20 @@ namespace SquareNews.Lib.Aggregation
             var newssources = "https://newsapi.org/v2/sources?apiKey=" + localSource.ApiKey; //"7ccec5269a994497a486934b8fa1009d";//"5e7564559c884718a1a1cd8955d0f767";
 
             var client = new WebClient();
+
             var result = await client.DownloadStringTaskAsync(new Uri(newssources));
 
             if (result != null)
             {
+                _logger.Info("Got NewsApi source");
+
                 var json = JsonConvert.DeserializeObject<NewsApiSourceObject>(result);
                 if (json != null && json.Status == "ok")
                 {
                     foreach (var s in json.Sources)
                     {
+                        _logger.Info("Updating source: " + s.Name);
+
                         var newsApiSource = new NewsApiSource
                         {
                             Name = s.Name,
@@ -93,6 +102,8 @@ namespace SquareNews.Lib.Aggregation
 
         private async Task<bool> CallNewsApi()
         {
+            _logger.Info("Calling NewsApi");
+
             var localSource = _newsSourceRepository.GetByKey(_apiLookupKey); //newsapi source
 
             if (localSource == null)
@@ -105,14 +116,17 @@ namespace SquareNews.Lib.Aggregation
 
             while (_resultsRemaining > 0)
             {
+                _logger.Info("Results remaining: " + _resultsRemaining);
                 _newsApiPage++;
                 await QueryNewsApi(100);
             }
 
             if (_newsArticles.Any())
             {
+                _logger.Info("Writing articles");
                 foreach (var a in _newsArticles)
                 {
+                    _logger.Info(a.Headline);
                     _articleRepository.Create(a);
                 }
 
@@ -129,12 +143,14 @@ namespace SquareNews.Lib.Aggregation
         {
             var response = new ArticlesResult();
 
-            await Task.Run(() => response = _newsApiClient.GetEverything(new EverythingRequest
+            _logger.Info("Querying NewsApi. Page: " + _newsApiPage);
+
+            await Task.Run(() => response = _newsApiClient.GetTopHeadlines(new TopHeadlinesRequest
             {
                 Sources = _newsApiSourceRepository.GetAll().Where(c => c.Language == "en").Select(c => c.ApiSourceName).ToList(), //get from db
-                SortBy = SortBys.Popularity,
+                //SortBy = SortBys.Popularity,
                 Language = Languages.EN,
-                From = DateTime.Now.AddHours(-1),
+                //From = DateTime.Now.AddHours(-1),
                 PageSize = pageSize,
                 //Country = _newsApiCountry,
                 Page = _newsApiPage
@@ -159,7 +175,7 @@ namespace SquareNews.Lib.Aggregation
                         PublishedOn = a.PublishedAt.HasValue ? a.PublishedAt.Value : DateTime.Now
                     };
 
-                    Debug.WriteLine("Writing article: " + a.Title);
+                    _logger.Info("Adding article: " + a.Title);
 
                     _newsArticles.Add(article);
                 }

@@ -31,3 +31,6 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapp
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.pdb
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.dll
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Dapper.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.config
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.xml
