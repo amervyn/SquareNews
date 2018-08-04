@@ -65,7 +65,12 @@ namespace SquareNews.Lib.Repository
 
         public List<NewsArticle> GetAll()
         {
-            throw new System.NotImplementedException();
+            using (DatabaseFactory.DatabaseConnection)
+            {
+                var readAllArticlesSp = "ReadAllArticles";
+                var res = _dbFactory.DatabaseConnection.Query<NewsArticle>(readAllArticlesSp, commandType: System.Data.CommandType.StoredProcedure);
+                return res.ToList();
+            }
         }
 
         public NewsArticle GetByKey(string key)

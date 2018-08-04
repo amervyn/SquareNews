@@ -40,3 +40,6 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\RestSharp.
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.config
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.dll
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.xml
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.config
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Lib\bin\Debug\NLog.xml

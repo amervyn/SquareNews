@@ -15,5 +15,6 @@ namespace SquareNews.Lib.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime PublishedOn { get; set; }
         public string Country { get; set; }
+        public int ViewCount { get; set; }
     }
 }

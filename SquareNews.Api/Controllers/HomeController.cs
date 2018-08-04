@@ -13,8 +13,8 @@ namespace SquareNews.Api.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.Title = "Home Page";
-            PublicApiCaller publicApiCaller = new PublicApiCaller();
-            var result=await publicApiCaller.CallPublicService();
+            //PublicApiCaller publicApiCaller = new PublicApiCaller();
+            //var result=await publicApiCaller.CallPublicService();
             return View();
         }
     }
