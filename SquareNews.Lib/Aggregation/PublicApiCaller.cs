@@ -147,7 +147,7 @@ namespace SquareNews.Lib.Aggregation
 
             await Task.Run(() => response = _newsApiClient.GetTopHeadlines(new TopHeadlinesRequest
             {
-                Sources = _newsApiSourceRepository.GetAll(DateTime.MinValue).Where(c => c.Language == "en").Select(c => c.ApiSourceName).ToList(), //get from db
+                Sources = _newsApiSourceRepository.GetAll(new DateTime(2018, 1, 1), 0).Where(c => c.Language == "en").Select(c => c.ApiSourceName).ToList(), //get from db
                 //SortBy = SortBys.Popularity,
                 Language = Languages.EN,
                 //From = DateTime.Now.AddHours(-1),

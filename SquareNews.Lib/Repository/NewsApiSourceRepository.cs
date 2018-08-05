@@ -39,7 +39,7 @@ namespace SquareNews.Lib.Repository
 
                 var count = _dbFactory.DatabaseConnection.Query<int>(checkExisting).FirstOrDefault();
 
-                if (count<=0)
+                if (count <= 0)
                 {
                     string readAllSp = "insert into dbo.NewsApiSource values(@ApiSourceName, @Name, @Description, @Url, @Category, @Language, @Country, @Enabled)";
 
@@ -66,7 +66,7 @@ namespace SquareNews.Lib.Repository
             throw new NotImplementedException();
         }
 
-        public List<NewsApiSource> GetAll(DateTime fromDate)
+        public List<NewsApiSource> GetAll(DateTime fromDate, int rowCount)
         {
             using (DatabaseFactory.DatabaseConnection)
             {

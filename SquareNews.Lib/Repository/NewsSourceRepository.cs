@@ -51,7 +51,7 @@ namespace SquareNews.Lib.Repository
             }
         }
 
-        public List<NewsSource> GetAll(DateTime fromDate)
+        public List<NewsSource> GetAll(DateTime fromDate, int rowCount)
         {
             using (DatabaseFactory.DatabaseConnection)
             {

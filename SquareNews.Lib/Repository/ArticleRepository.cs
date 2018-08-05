@@ -64,13 +64,14 @@ namespace SquareNews.Lib.Repository
             throw new System.NotImplementedException();
         }
 
-        public List<NewsArticle> GetAll(DateTime fromDate)
+        public List<NewsArticle> GetAll(DateTime fromDate, int rowCount)
         {
             using (DatabaseFactory.DatabaseConnection)
             {
                 var readAllArticlesSp = "ReadAllArticles";
                 var p = new DynamicParameters();
                 p.Add("@fromDate", fromDate);
+                //p.Add("@rowCount", rowCount < 0 ? 20 : rowCount);
                 var res = _dbFactory.DatabaseConnection.Query<NewsArticle>(readAllArticlesSp, p, commandType: System.Data.CommandType.StoredProcedure);
                 return res.ToList();
             }
