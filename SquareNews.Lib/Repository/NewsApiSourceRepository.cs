@@ -66,7 +66,7 @@ namespace SquareNews.Lib.Repository
             throw new NotImplementedException();
         }
 
-        public List<NewsApiSource> GetAll()
+        public List<NewsApiSource> GetAll(DateTime fromDate)
         {
             using (DatabaseFactory.DatabaseConnection)
             {

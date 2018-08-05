@@ -12,7 +12,7 @@ namespace SquareNews.Lib.Repository
         DbFactory DatabaseFactory { get; set; }
         T Create(T obj);
         T GetByKey(string key);
-        List<T> GetAll();
+        List<T> GetAll(DateTime fromDate);
         bool Update(T obj);
         void Delete(string key);
     }

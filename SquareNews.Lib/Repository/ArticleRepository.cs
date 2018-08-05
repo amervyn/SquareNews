@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using SquareNews.Lib.Database;
@@ -63,12 +64,14 @@ namespace SquareNews.Lib.Repository
             throw new System.NotImplementedException();
         }
 
-        public List<NewsArticle> GetAll()
+        public List<NewsArticle> GetAll(DateTime fromDate)
         {
             using (DatabaseFactory.DatabaseConnection)
             {
                 var readAllArticlesSp = "ReadAllArticles";
-                var res = _dbFactory.DatabaseConnection.Query<NewsArticle>(readAllArticlesSp, commandType: System.Data.CommandType.StoredProcedure);
+                var p = new DynamicParameters();
+                p.Add("@fromDate", fromDate);
+                var res = _dbFactory.DatabaseConnection.Query<NewsArticle>(readAllArticlesSp, p, commandType: System.Data.CommandType.StoredProcedure);
                 return res.ToList();
             }
         }

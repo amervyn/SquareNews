@@ -28,9 +28,11 @@ namespace SquareNews.Api.Controllers
         {
             var resultCount = -1;
             var pageNumber = -1;
+            var fromDate = new DateTime(2018,1,1);
 
             var pageSize = Request.GetQueryString("pageSize");
             var page = Request.GetQueryString("page");
+            var from = Request.GetQueryString("fromDate");
 
             if (!string.IsNullOrEmpty(pageSize))
                 resultCount = Convert.ToInt16(pageSize);
@@ -38,18 +40,19 @@ namespace SquareNews.Api.Controllers
             if (!string.IsNullOrEmpty(page))
                 pageNumber = Convert.ToInt16(page);
 
+            if (!string.IsNullOrEmpty(from))
+                fromDate = Convert.ToDateTime(from);
+
             var result = new ArticleResult
             {
-                Articles = _articleRepository.GetAll().OrderByDescending(c => c.PublishedOn).ToList()
+                Articles = _articleRepository.GetAll(fromDate).OrderByDescending(c => c.PublishedOn).ToList()
             };
 
             result.TotalResults = result.Articles.Count();
-
-
+            
             if (resultCount >= 0)
                 result.Articles = result.Articles.Take(resultCount).ToList();
-
-
+            
             return Json(result);
         }
 
