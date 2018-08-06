@@ -56,7 +56,19 @@ namespace SquareNews.Lib.Repository
 
             }
 
+            UpdateArticleCountry(obj);
+
             return obj;
+        }
+
+        private void UpdateArticleCountry(NewsArticle obj)
+        {
+            using (DatabaseFactory.DatabaseConnection)
+            {
+                var query = "dbo.UpdateArticleCountry";
+
+                var result = DatabaseFactory.DatabaseConnection.Execute(query, commandType: System.Data.CommandType.StoredProcedure);
+            }
         }
 
         public void Delete(string key)
