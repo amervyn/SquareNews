@@ -237,3 +237,13 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.csproj.CoreCompileInputs.cache
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.dll
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.pdb
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NLog.config
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\SquareNews.Lib.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NewsAPI.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NLog.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\Dapper.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\SquareNews.Lib.pdb
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\SquareNews.Lib.dll.config
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NewsAPI.xml
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NLog.xml
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\Dapper.pdb
