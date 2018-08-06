@@ -71,7 +71,7 @@ namespace SquareNews.Lib.Repository
                 var readAllArticlesSp = "ReadAllArticles";
                 var p = new DynamicParameters();
                 p.Add("@fromDate", fromDate);
-                //p.Add("@rowCount", rowCount < 0 ? 20 : rowCount);
+                p.Add("@rowCount", rowCount < 0 ? 20 : rowCount);
                 var res = _dbFactory.DatabaseConnection.Query<NewsArticle>(readAllArticlesSp, p, commandType: System.Data.CommandType.StoredProcedure);
                 return res.ToList();
             }
