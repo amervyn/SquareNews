@@ -54,11 +54,16 @@ namespace SquareNews.Api.Services
                     var count = res.Read<int>().First();
                     var articles = res.Read<NewsArticle>().ToList();
 
-                    return new ArticleResult
+                    return new List<ArticleResult>
                     {
-                        TotalResults = count,
-                        Articles = articles
-                    };
+                        new ArticleResult
+                        {
+                            TotalResults = count,
+                            Articles = articles
+                        }
+                };
+
+
                 }
             }
         }
@@ -70,7 +75,7 @@ namespace SquareNews.Api.Services
 
         public bool Update(ArticleResult obj)
         {
-            return null;
+            return false;
         }
     }
 }

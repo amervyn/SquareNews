@@ -246,7 +246,6 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Api\obj\Debug\SquareNews
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Api\bin\Dapper.dll
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Api\bin\Dapper.pdb
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\Dapper.dll
-C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\Dapper.pdb
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\NLog.config
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\NLog.dll
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\NLog.xml
@@ -257,3 +256,4 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\Swashbuckle.Core.dll
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\WebActivatorEx.dll
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Api\bin\Swashbuckle.Core.dll
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Api\bin\WebActivatorEx.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Api\bin\Dapper.xml
