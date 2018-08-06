@@ -10,24 +10,27 @@ using SquareNews.Api.Models;
 using System.Web.Helpers;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using SquareNews.Api.Services;
 
 namespace SquareNews.Api.Controllers
 {
     public class ArticlesController : ApiController
     {
         private ArticleRepository _articleRepository;
+        private ArticleResultRepository _articleResultRepository;
 
         public ArticlesController()
         {
             _articleRepository = new ArticleRepository();
+            _articleResultRepository = new ArticleResultRepository();
         }
 
 
         // GET api/<controller>
         public IHttpActionResult GetAll()
         {
-            var resultsToShow = -1;
-            var pageNumber = -1;
+            var resultsToShow = 20;
+            var pageNumber = 1;
             var fromDate = new DateTime(2018, 1, 1);
 
             var pageSize = Request.GetQueryString("pageSize");
@@ -43,20 +46,17 @@ namespace SquareNews.Api.Controllers
             if (!string.IsNullOrEmpty(from))
                 fromDate = Convert.ToDateTime(from);
 
-            var result = new ArticleResult
+
+            var rowStart = 1 + (pageNumber * resultsToShow) - resultsToShow;
+
+            var a = _articleResultRepository.GetAll(fromDate, resultsToShow, rowStart);
+
+            var result = new ArticleResult();
+
+            if (a.Any())
             {
-                Articles = _articleRepository.GetAll(fromDate, resultsToShow).OrderByDescending(c => c.CreatedOn).ToList()
-            };
-
-            result.TotalResults = result.Articles.Count();
-
-            if (resultsToShow >= 0)
-            {
-                result.Articles = result.Articles.Take(resultsToShow).ToList();
-
-                if (pageNumber >= 0)
-                    result.Articles = result.Articles.Skip(resultsToShow * pageNumber).Take(resultsToShow).ToList();
-
+                result.TotalResults = a[0].TotalResults;
+                result.Articles = a[0].Articles.ToList();
             }
 
 

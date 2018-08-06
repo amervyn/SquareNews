@@ -10,7 +10,7 @@ using SquareNews.Lib.Entities;
 
 namespace SquareNews.Api.Services
 {
-    public class ArticleResultRepositoy : IDataRepository<ArticleResult>
+    public class ArticleResultRepository : IDataRepository<ArticleResult>
     {
         private DbFactory _dbFactory;
         public DbFactory DatabaseFactory
@@ -40,7 +40,7 @@ namespace SquareNews.Api.Services
             throw new NotImplementedException();
         }
 
-        public List<ArticleResult> GetAll(DateTime fromDate, int rowCount)
+        public List<ArticleResult> GetAll(DateTime fromDate, int rowCount, int rowStart = 1)
         {
             using (DatabaseFactory.DatabaseConnection)
             {
@@ -48,6 +48,7 @@ namespace SquareNews.Api.Services
                 var p = new DynamicParameters();
                 p.Add("@fromDate", fromDate);
                 p.Add("@rowCount", rowCount < 0 ? 20 : rowCount);
+                p.Add("@rowStart", rowStart < 0 ? 1 : rowStart);
                 using (var res = _dbFactory.DatabaseConnection.QueryMultiple(readAllArticlesSp, p, commandType: System.Data.CommandType.StoredProcedure))
                 {
 
@@ -61,7 +62,7 @@ namespace SquareNews.Api.Services
                             TotalResults = count,
                             Articles = articles
                         }
-                };
+                    };
 
 
                 }
