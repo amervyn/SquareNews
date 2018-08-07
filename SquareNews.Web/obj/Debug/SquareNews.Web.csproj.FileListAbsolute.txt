@@ -258,3 +258,4 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\NewsAPI.xml
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\NLog.xml
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\Dapper.pdb
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\RestSharp.dll
+C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\RestSharp.dll

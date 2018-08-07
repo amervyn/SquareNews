@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using RestSharp;
 
 namespace SquareNews.Web.Controllers
 {
@@ -19,31 +20,64 @@ namespace SquareNews.Web.Controllers
         {
             var result = new ArticleResult();
 
-            using (var client = new HttpClient())
+            var api = new RestClient("http://amervyn.duckdns.org/");
+
+            var fromDate = new Parameter
             {
-                //Passing service base url  
-                client.BaseAddress = new Uri(Baseurl);
+                Type = ParameterType.QueryString,
+                Name = "fromDate",
+                Value = DateTime.Now.AddHours(-6).ToString("yyyy-MM-ddTHH:mm:ss")
+            };
 
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var pageNumber = new Parameter
+            {
+                Type = ParameterType.QueryString,
+                Name = "page",
+                Value = 1
+            };
 
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("http://amervyn.duckdns.org/api/Articles/?fromDate=2018-08-06T13:00:00&pageSize=100");
+            var pageSize = new Parameter
+            {
+                Type = ParameterType.QueryString,
+                Name = "pageSize",
+                Value = 50
+            };
 
-                //Checking the response is successful or not which is sent using HttpClient  
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+            var request = new RestRequest("api/Articles", Method.GET);
 
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    result = JsonConvert.DeserializeObject<ArticleResult>(EmpResponse);
+            request.AddParameter(fromDate);
+            request.AddParameter(pageNumber);
+            request.AddParameter(pageSize);
 
-                }
-                //returning the employee list to view  
-                return View(result);
-            }
+            var queryResult = api.Execute<ArticleResult>(request).Data;
+
+            //using (var client = new HttpClient())
+            //{
+            //    //Passing service base url  
+            //    client.BaseAddress = new Uri(Baseurl);
+
+            //    client.DefaultRequestHeaders.Clear();
+            //    //Define request data format  
+            //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+            //    HttpResponseMessage Res = await client.GetAsync("http://amervyn.duckdns.org/api/Articles/?fromDate=2018-08-06T13:00:00");
+
+            //    //Checking the response is successful or not which is sent using HttpClient  
+            //    if (Res.IsSuccessStatusCode)
+            //    {
+            //        //Storing the response details recieved from web api   
+            //        var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+
+            //        //Deserializing the response recieved from web api and storing into the Employee list  
+            //        result = JsonConvert.DeserializeObject<ArticleResult>(EmpResponse);
+
+            //    }
+            //    //returning the employee list to view  
+
+            //}
+
+            return View(queryResult);
         }
 
         public ActionResult About()

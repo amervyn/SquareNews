@@ -7,10 +7,9 @@
 <h3>Total Results: @Model.TotalResults</h3>
 
 <div class="container-fluid">
-    <div class="row">
-        @for (int i = 0; i < Model.Articles.Count; i++)
-        {
-            if (i > 0 && i % 2 == 0)
+   
+
+        @*if (i > 0 && i % 2 == 0)
             {
                 @:</div><div class="row">
                 // close and start new row
@@ -21,8 +20,23 @@
                     <div style="position: absolute; bottom: 8px; left: 16px; background-color:white;color:black; font-size:14pt">@Model.Articles[i].Headline</div>
                     <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model.Articles[i].Country</div>
                 </a>
-            </div>
+            </div>*@
+        @if (Model.Articles.Any())
+        {
+            var art = Model.Articles;
+
+            while (art.Any())
+            {
+
+                @Html.Partial("_articlePartial", art.Take(5).ToList())
+
+                art = art.Skip(5).ToList();
+
+            }
         }
-    </div>
+
+
+
+    
 </div>
 
