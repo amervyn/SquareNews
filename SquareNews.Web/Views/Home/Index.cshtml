@@ -28,9 +28,9 @@
             while (art.Any())
             {
 
-                @Html.Partial("_articlePartial", art.Take(5).ToList())
+                @Html.Partial("_articlePartial", art.Take(3).ToList())
 
-                art = art.Skip(5).ToList();
+                art = art.Skip(3).ToList();
 
             }
         }
