@@ -1,73 +1,78 @@
 ﻿@model List<SquareNews.Lib.Entities.NewsArticle>
 
 <style type="text/css">
-    .col-sm-4  {
+    .col-sm-4 {
         transition: transform .25s, background .25s;
     }
 
         .col-sm-4:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
             background: white;
             position: relative;
-            z-index: 1;            
+            z-index: 1;
         }
 
-        .col-sm-4:hover > .mylink
-        {
-            display:block;
-        }
-
-        .mylink{
-            display:none;
-        }
-
+    .mylink {
+        display: none;
+    }
 </style>
 
-@if (Model.Count == 3)
+
+@if (Model.Count <= 3)
 {
     <div class="row">
-        <div class="col-sm-4">
-            <a href="@Model[0].Url">
-                <img class="rounded img-fluid" src="@Model[0].ImageUrl">
-                <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[0].Headline</div>
-                <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[0].Country</div>
-                <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[0].Description</div>
-            </a>            
-        </div>
-        <div class="col-sm-4">
-            <a href="@Model[1].Url">
-                <img class="rounded img-fluid" src="@Model[1].ImageUrl">
-                <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[1].Headline</div>
-                <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[1].Country</div>
-                <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[1].Description</div>
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="@Model[2].Url">
-                <img class="rounded img-fluid" src="@Model[2].ImageUrl">
-                <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[2].Headline</div>
-                <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[2].Country</div>
-                <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[2].Description</div>
-            </a>
-        </div>
+        @if (Model.Count >= 1)
+        {
+            <div class="col-sm-4">
+                <a href="@Model[0].Url">
+                    <img class="rounded img-fluid" src="@Model[0].ImageUrl">
+                    <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[0].Headline</div>
+                    <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[0].Country</div>
+                    <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[0].Description</div>
+                </a>
+            </div>
+
+            if (Model.Count >= 2)
+            {
+                <div class="col-sm-4">
+                    <a href="@Model[1].Url">
+                        <img class="rounded img-fluid" src="@Model[1].ImageUrl">
+                        <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[1].Headline</div>
+                        <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[1].Country</div>
+                        <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[1].Description</div>
+                    </a>
+                </div>
+                if (Model.Count == 3)
+                {
+                    <div class="col-sm-4">
+                        <a href="@Model[2].Url">
+                            <img class="rounded img-fluid" src="@Model[2].ImageUrl">
+                            <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[2].Headline</div>
+                            <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[2].Country</div>
+                            <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[2].Description</div>
+                        </a>
+                    </div>
+                }
+            }
+        }
         @*<div class="col-sm-4">
-            <a href="@Model[3].Url">
-                <img class="rounded img-fluid" src="@Model[3].ImageUrl">
-                <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[3].Headline</div>
-                <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[3].Country</div>
-                <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[3].Description</div>
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="@Model[4].Url">
-                <img class="rounded img-fluid" src="@Model[4].ImageUrl">
-                <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[4].Headline</div>
-                <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[4].Country</div>
-                <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[4].Description</div>
-                @*<div style="position: absolute; bottom: 8px; left: 16px; background-color:white;color:black; font-size:14pt">@Model[4].Headline</div>
-        <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model[4].Country</div>
-            </a>
-        </div>*@
+                <a href="@Model[3].Url">
+                    <img class="rounded img-fluid" src="@Model[3].ImageUrl">
+                    <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[3].Headline</div>
+                    <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[3].Country</div>
+                    <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[3].Description</div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="@Model[4].Url">
+                    <img class="rounded img-fluid" src="@Model[4].ImageUrl">
+                    <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[4].Headline</div>
+                    <div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[4].Country</div>
+                    <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[4].Description</div>
+                    @*<div style="position: absolute; bottom: 8px; left: 16px; background-color:white;color:black; font-size:14pt">@Model[4].Headline</div>
+            <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model[4].Country</div>
+                </a>
+            </div>*@
     </div>
 }
 

@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using RestSharp;
+using SquareNews.Lib.Entities;
 
 namespace SquareNews.Web.Controllers
 {
     public class HomeController : Controller
     {
         //Hosted web API REST Service base url  
-        string Baseurl = "http://192.168.95.1:5555/";
+        string Baseurl = "http://amervyn.duckdns.org/";
         public async Task<ActionResult> Index()
         {
             var result = new ArticleResult();
 
-            var api = new RestClient("http://amervyn.duckdns.org/");
+            var api = new RestClient(Baseurl);
 
             var fromDate = new Parameter
             {
@@ -80,6 +81,19 @@ namespace SquareNews.Web.Controllers
             return View(queryResult);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetCountries()
+        {
+            var result = new List<NewsApiSource>();
+
+            var api = new RestClient(Baseurl);
+
+            var request = new RestRequest("api/NewsSources", Method.GET);
+
+            var queryResult = api.Execute<List<NewsApiSource>>(request).Data;
+
+            return Json(new { data = queryResult.Select(c => c.Country).ToList() });
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
