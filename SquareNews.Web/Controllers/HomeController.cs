@@ -19,6 +19,8 @@ namespace SquareNews.Web.Controllers
         string Baseurl = "http://amervyn.duckdns.org/";
         public async Task<ActionResult> Index()
         {
+            var country = Request.QueryString.Get("country");
+            
             var result = new ArticleResult();
 
             var api = new RestClient(Baseurl);
@@ -52,6 +54,15 @@ namespace SquareNews.Web.Controllers
 
             var queryResult = api.Execute<ArticleResult>(request).Data;
 
+            if (country != null)
+            {
+                pageSize.Value = queryResult.TotalResults;
+                var res = api.Execute<ArticleResult>(request).Data;
+                queryResult.Articles= res.Articles.Where(c => c.Country == country.ToLower()).ToList();
+            }
+                
+            
+
             //using (var client = new HttpClient())
             //{
             //    //Passing service base url  
@@ -78,11 +89,12 @@ namespace SquareNews.Web.Controllers
 
             //}
 
+
             return View(queryResult);
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetCountries()
+        public JsonResult GetCountries()
         {
             var result = new List<NewsApiSource>();
 
@@ -92,7 +104,7 @@ namespace SquareNews.Web.Controllers
 
             var queryResult = api.Execute<List<NewsApiSource>>(request).Data;
 
-            return Json(new { data = queryResult.Select(c => c.Country).ToList() });
+            return Json(new { data = queryResult.GroupBy(c=>c.Country).Select(c => c.First()).OrderBy(c=>c.Country).Select(c=>c.Country.ToUpper()).ToList() }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult About()
         {
@@ -107,5 +119,6 @@ namespace SquareNews.Web.Controllers
 
             return View();
         }
+
     }
 }

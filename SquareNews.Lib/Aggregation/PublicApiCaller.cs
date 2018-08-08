@@ -50,7 +50,9 @@ namespace SquareNews.Lib.Aggregation
 
             await UpdateNewsApiSources();
 
-            await CallNewsApi();
+            await CallNewsApiHeadlines();
+
+            await CallNewsApiEverything();
 
             return true;
         }
@@ -100,9 +102,11 @@ namespace SquareNews.Lib.Aggregation
             return false;
         }
 
-        private async Task<bool> CallNewsApi()
+        private async Task<bool> CallNewsApiHeadlines()
         {
-            _logger.Info("Calling NewsApi");
+            _logger.Info("-----------------------------");
+            _logger.Info("Calling NewsApi Headlines");
+            _logger.Info("-----------------------------");
 
             var localSource = _newsSourceRepository.GetByKey(_apiLookupKey); //newsapi source
 
@@ -112,13 +116,13 @@ namespace SquareNews.Lib.Aggregation
             // init with API key
             _newsApiClient = new NewsApiClient(localSource.ApiKey);  //("5e7564559c884718a1a1cd8955d0f767");
 
-            await QueryNewsApi(100);
+            await QueryNewsApiHeadlines(100);
 
             while (_resultsRemaining > 0)
             {
                 _logger.Info("Results remaining: " + _resultsRemaining);
                 _newsApiPage++;
-                await QueryNewsApi(100);
+                await QueryNewsApiHeadlines(100);
             }
 
             if (_newsArticles.Any())
@@ -139,7 +143,50 @@ namespace SquareNews.Lib.Aggregation
             return false;
         }
 
-        private async Task<bool> QueryNewsApi(int pageSize)
+
+        private async Task<bool> CallNewsApiEverything()
+        {
+            _logger.Info("-----------------------------");
+            _logger.Info("Calling NewsApi Everything");
+            _logger.Info("-----------------------------");
+
+            var localSource = _newsSourceRepository.GetByKey(_apiLookupKey); //newsapi source
+
+            if (localSource == null)
+                return false;
+
+            // init with API key
+            _newsApiClient = new NewsApiClient(localSource.ApiKey);  //("5e7564559c884718a1a1cd8955d0f767");
+
+            await QueryNewsApiEverything(100);
+
+            while (_resultsRemaining > 0)
+            {
+                _logger.Info("Results remaining: " + _resultsRemaining);
+                _newsApiPage++;
+                await QueryNewsApiEverything(100);
+            }
+
+            if (_newsArticles.Any())
+            {
+                _logger.Info("Writing articles");
+                foreach (var a in _newsArticles)
+                {
+                    _logger.Info(a.Headline);
+                    _articleRepository.Create(a);
+                }
+
+                _newsArticles.Clear();
+                _newsApiPage = 1;
+
+                return true;
+            }
+
+            return false;
+        }
+
+
+        private async Task<bool> QueryNewsApiHeadlines(int pageSize)
         {
             var response = new ArticlesResult();
 
@@ -151,6 +198,54 @@ namespace SquareNews.Lib.Aggregation
                 //SortBy = SortBys.Popularity,
                 Language = Languages.EN,
                 //From = DateTime.Now.AddHours(-1),
+                PageSize = pageSize,
+                //Country = _newsApiCountry,
+                Page = _newsApiPage
+            }));
+
+            if (response.Status == Statuses.Ok)
+            {
+                _resultsRemaining = response.TotalResults - (_newsApiPage * pageSize);
+
+                foreach (var a in response.Articles)
+                {
+                    var article = new NewsArticle
+                    {
+                        Headline = a.Title,
+                        SourceId = 1,
+                        NewsApiSourceId = a.Source.Id,
+                        Description = a.Description,
+                        IsVisible = true,
+                        ImageUrl = a.UrlToImage,
+                        Url = a.Url,
+                        CreatedOn = DateTime.Now,
+                        PublishedOn = a.PublishedAt.HasValue ? a.PublishedAt.Value : DateTime.Now
+                    };
+
+                    _logger.Info("Adding article: " + a.Title);
+
+                    _newsArticles.Add(article);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+
+        private async Task<bool> QueryNewsApiEverything(int pageSize)
+        {
+            var response = new ArticlesResult();
+
+            _logger.Info("Querying NewsApi. Page: " + _newsApiPage);
+
+            await Task.Run(() => response = _newsApiClient.GetEverything(new EverythingRequest
+            {
+                Sources = _newsApiSourceRepository.GetAll(new DateTime(2018, 1, 1), 0).Where(c => c.Language == "en").Select(c => c.ApiSourceName).ToList(), //get from db
+                SortBy = SortBys.Popularity,
+                Language = Languages.EN,
+                From = DateTime.Now.AddMinutes(-30),
                 PageSize = pageSize,
                 //Country = _newsApiCountry,
                 Page = _newsApiPage

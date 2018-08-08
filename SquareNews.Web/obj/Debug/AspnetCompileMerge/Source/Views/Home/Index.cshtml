@@ -4,13 +4,44 @@
     ViewBag.Title = "SquareNews.com";
 }
 
-<h3>Total Results: @Model.TotalResults</h3>
+<h5 style="color:darkblue; font-weight:bold">@Model.TotalResults articles</h5>
+
+<div class="col-md-4">
+    <div class="btn-group">
+        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Country
+        </button>
+        <div class="dropdown-menu menu-country" aria-labelledby="dropdownMenuLink">
+            <
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Duration
+        </button>
+        <div class="dropdown-menu menu-duration" aria-labelledby="dropdownMenuLink">
+           
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Results
+        </button>
+        <div class="dropdown-menu menu-results" aria-labelledby="dropdownMenuLink">
+           
+        </div>
+    </div>
+
+</div>
+
+<br/><br/>
 
 <div class="container-fluid">
-    <div class="row">
-        @for (int i = 0; i < Model.Articles.Count; i++)
-        {
-            if (i > 0 && i % 2 == 0)
+   
+
+        @*if (i > 0 && i % 2 == 0)
             {
                 @:</div><div class="row">
                 // close and start new row
@@ -21,8 +52,23 @@
                     <div style="position: absolute; bottom: 8px; left: 16px; background-color:white;color:black; font-size:14pt">@Model.Articles[i].Headline</div>
                     <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model.Articles[i].Country</div>
                 </a>
-            </div>
+            </div>*@
+        @if (Model.Articles.Any())
+        {
+            var art = Model.Articles;
+
+            while (art.Any())
+            {
+
+                @Html.Partial("_articlePartial", art.Take(3).ToList())
+
+                art = art.Skip(3).ToList();
+
+            }
         }
-    </div>
+
+
+
+    
 </div>
 

@@ -55,29 +55,44 @@
         //});
 
         $(function () {
+            //$.getJSON('/Home/GetCountries', function (data) {
+            //    alert(data.data);
+            //    console.log(data);                
+            //}
+
             $.ajax({
                 type: "GET",
                 url: "/Home/GetCountries",
-                contentType: "application/json; charset=utf-8",
+                //contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (response) {
-                    $.each(resonse.data, function (d) {
+                contentType: false,
+                processData: false,  
+                success: function (response) {                    
+                    $.each(response.data, function (d) {
                         //<a class="dropdown-item" href="#">Action</a>
-                        var div_data = "<a class='dropdown-item' href=" + d + ">" + d + "</a>";
-                        
+                        var div_data = "<a class='dropdown-item' style='font-weight:bold' href=/Home/Index/?country=" + response.data[d] + ">" + response.data[d] + "</a>";
                         $(div_data).appendTo('.menu-country');
                     });
                 }
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
             });
+
+
+            $(".dropdown-menu").on('click', 'a', function () {
+                $(".btn:first-child").text($(this).text());
+                $(".btn:first-child").val($(this).text());
+            });
+
+            //},
+            //    failure: function (response) {
+            //        alert(response.responseText);
+            //    },
+            //    error: function (response) {
+            //        alert(response.responseText);
+            //    }
+            //);
         });
-        
+
+
 
     </script>
 

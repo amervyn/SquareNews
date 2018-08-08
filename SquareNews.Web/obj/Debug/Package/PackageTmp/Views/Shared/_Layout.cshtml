@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SquareNews</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Square News", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
+    <div class="container-fluid">
+        <h1>AggreNews</h1>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SquareNews</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+
+        //$(function () {
+        //    $('.img-fluid').hover(function () {
+        //        $('a > .mylink').show();
+        //    }, function () {
+        //        $('a > .mylink').hide();
+        //    });
+        //});
+
+        $(function () {
+            //$.getJSON('/Home/GetCountries', function (data) {
+            //    alert(data.data);
+            //    console.log(data);                
+            //}
+
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetCountries",
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                contentType: false,
+                processData: false,  
+                success: function (response) {                    
+                    $.each(response.data, function (d) {
+                        //<a class="dropdown-item" href="#">Action</a>
+                        var div_data = "<a class='dropdown-item' style='font-weight:bold' href=/Home/Index/?country=" + response.data[d] + ">" + response.data[d] + "</a>";
+                        $(div_data).appendTo('.menu-country');
+                    });
+                }
+            });
+
+
+            $(".dropdown-menu").on('click', 'a', function () {
+                $(".btn:first-child").text($(this).text());
+                $(".btn:first-child").val($(this).text());
+            });
+
+            //},
+            //    failure: function (response) {
+            //        alert(response.responseText);
+            //    },
+            //    error: function (response) {
+            //        alert(response.responseText);
+            //    }
+            //);
+        });
+
+
+
+    </script>
+
+</body>
+</html>
