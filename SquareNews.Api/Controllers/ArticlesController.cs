@@ -32,10 +32,12 @@ namespace SquareNews.Api.Controllers
             var resultsToShow = 20;
             var pageNumber = 1;
             var fromDate = new DateTime(2018, 1, 1);
+            var country = "gb";
 
             var pageSize = Request.GetQueryString("pageSize");
             var page = Request.GetQueryString("page");
             var from = Request.GetQueryString("fromDate");
+            var countryQs = Request.GetQueryString("country");
 
             if (!string.IsNullOrEmpty(pageSize))
                 resultsToShow = Convert.ToInt16(pageSize);
@@ -46,10 +48,13 @@ namespace SquareNews.Api.Controllers
             if (!string.IsNullOrEmpty(from))
                 fromDate = Convert.ToDateTime(from);
 
+            if (!string.IsNullOrEmpty(countryQs))
+                country = countryQs;
+
 
             var rowStart = 1 + (pageNumber * resultsToShow) - resultsToShow;
 
-            var a = _articleResultRepository.GetAll(fromDate, resultsToShow, rowStart);
+            var a = _articleResultRepository.GetAll(fromDate, resultsToShow, country, rowStart);
 
             var result = new ArticleResult();
 

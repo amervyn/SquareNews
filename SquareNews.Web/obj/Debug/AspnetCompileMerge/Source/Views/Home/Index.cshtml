@@ -4,24 +4,27 @@
     ViewBag.Title = "SquareNews.com";
 }
 
-<h5 style="color:darkblue; font-weight:bold">@Model.TotalResults articles</h5>
+@*<h5 style="color:darkblue; font-weight:bold; float:right">@Model.TotalResults articles</h5>*@
 
 <div class="col-md-4">
-    <div class="btn-group">
-        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="btn-group mr-3">
+        <button class="btn btn-secondary btn-lg dropdown-toggle btn-country" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Country
         </button>
-        <div class="dropdown-menu menu-country" aria-labelledby="dropdownMenuLink">
-            <
+        <div class="dropdown-menu menu-country" aria-labelledby="dropdownMenuLink">            
         </div>
     </div>
 
-    <div class="btn-group">
+    <div class="btn-group mr-3">
         <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Duration
         </button>
         <div class="dropdown-menu menu-duration" aria-labelledby="dropdownMenuLink">
-           
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">Last 3 Hours</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">Last 6 Hours</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">Last 9 Hours</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">Last 12 Hours</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">Last 24 Hours</a>
         </div>
     </div>
 
@@ -30,7 +33,11 @@
             Results
         </button>
         <div class="dropdown-menu menu-results" aria-labelledby="dropdownMenuLink">
-           
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">20</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">50</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">100</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">200</a>
+            <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">500</a>
         </div>
     </div>
 

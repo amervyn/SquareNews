@@ -40,7 +40,7 @@ namespace SquareNews.Api.Services
             throw new NotImplementedException();
         }
 
-        public List<ArticleResult> GetAll(DateTime fromDate, int rowCount, int rowStart = 1)
+        public List<ArticleResult> GetAll(DateTime fromDate, int rowCount, string country=null, int rowStart = 1)
         {
             using (DatabaseFactory.DatabaseConnection)
             {
@@ -49,6 +49,10 @@ namespace SquareNews.Api.Services
                 p.Add("@fromDate", fromDate);
                 p.Add("@rowCount", rowCount < 0 ? 20 : rowCount);
                 p.Add("@rowStart", rowStart < 0 ? 1 : rowStart);
+
+                if (!string.IsNullOrEmpty(country))
+                    p.Add("@country", country);
+
                 using (var res = _dbFactory.DatabaseConnection.QueryMultiple(readAllArticlesSp, p, commandType: System.Data.CommandType.StoredProcedure))
                 {
 

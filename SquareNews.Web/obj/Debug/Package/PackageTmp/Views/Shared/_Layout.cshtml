@@ -29,8 +29,8 @@
                 </div>
             </div>
         </div>*@
-    <div class="container-fluid">
-        <h1>AggreNews</h1>
+    <div class="container-fluid">        
+            <img src="~/aggrenews.png"/>        
     </div>
     <div class="container-fluid body-content">
         @RenderBody()
@@ -77,9 +77,17 @@
             });
 
 
-            $(".dropdown-menu").on('click', 'a', function () {
-                $(".btn:first-child").text($(this).text());
-                $(".btn:first-child").val($(this).text());
+            $(".menu-country").on('click', 'a', function () {
+                $(".btn-country:first-child").text($(this).text());
+                $(".btn-country:first-child").val($(this).text());
+            });
+            $(".menu-duration").on('click', 'a', function () {
+                $(".btn-duration:first-child").text($(this).text());
+                $(".btn-duration:first-child").val($(this).text());
+            });
+            $(".menu-results").on('click', 'a', function () {
+                $(".btn-results:first-child").text($(this).text());
+                $(".btn-results:first-child").val($(this).text());
             });
 
             //},
