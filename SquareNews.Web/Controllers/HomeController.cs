@@ -19,12 +19,18 @@ namespace SquareNews.Web.Controllers
         string Baseurl = "http://amervyn.duckdns.org/";
         public ActionResult Index()
         {
-            return View(GetArticles());
+            return View(FetchArticles());
         }
 
 
         [HttpGet]
-        public ArticleResult GetArticles()
+        public ActionResult GetArticles()
+        {
+            return PartialView("_ArticlePartial", FetchArticles().Articles);
+        }
+
+
+        private ArticleResult FetchArticles()
         {
             var country = Request.QueryString.Get("country");
             var duration = Request.QueryString.Get("duration");

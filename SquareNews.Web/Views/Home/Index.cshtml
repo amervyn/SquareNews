@@ -8,15 +8,15 @@
 
 <div class="col-md-4">
     <div class="btn-group mr-3">
-        <button class="btn btn-secondary btn-lg dropdown-toggle btn-country" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-primary btn-lg dropdown-toggle btn-country" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Country
         </button>
-        <div class="dropdown-menu menu-country" aria-labelledby="dropdownMenuLink">            
+        <div class="dropdown-menu menu-country" aria-labelledby="dropdownMenuLink">
         </div>
     </div>
 
     <div class="btn-group mr-3">
-        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Duration
         </button>
         <div class="dropdown-menu menu-duration" aria-labelledby="dropdownMenuLink">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="btn-group">
-        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Results
         </button>
         <div class="dropdown-menu menu-results" aria-labelledby="dropdownMenuLink">
@@ -43,39 +43,34 @@
 
 </div>
 
-<br/><br/>
+<br /><br />
+
+
 
 <div class="container-fluid">
-   
-
-        @*if (i > 0 && i % 2 == 0)
-            {
-                @:</div><div class="row">
-                // close and start new row
-            }
-            <div class="col-md-6" style="margin-top:1px;margin-bottom:1px">
-                <a href="@Model.Articles[i].Url" class="d-block mb-6">
-                    <img class="rounded img-fluid" src="@Model.Articles[i].ImageUrl">
-                    <div style="position: absolute; bottom: 8px; left: 16px; background-color:white;color:black; font-size:14pt">@Model.Articles[i].Headline</div>
-                    <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model.Articles[i].Country</div>
-                </a>
-            </div>*@
-        @if (Model.Articles.Any())
-        {
-            var art = Model.Articles;
-
-            while (art.Any())
-            {
-
-                @Html.Partial("_articlePartial", art.Take(3).ToList())
-
-                art = art.Skip(3).ToList();
-
-            }
-        }
 
 
-
+    @*@Html.Partial("_ArticlePartial", Model.Articles)*@
     
+    <div class="articlespartial">
+
+        @Html.Action("GetArticles", "Home")
+
+    </div>
+
+    @*if (i > 0 && i % 2 == 0)
+        {
+            @:</div><div class="row">
+            // close and start new row
+        }
+        <div class="col-md-6" style="margin-top:1px;margin-bottom:1px">
+            <a href="@Model.Articles[i].Url" class="d-block mb-6">
+                <img class="rounded img-fluid" src="@Model.Articles[i].ImageUrl">
+                <div style="position: absolute; bottom: 8px; left: 16px; background-color:white;color:black; font-size:14pt">@Model.Articles[i].Headline</div>
+                <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model.Articles[i].Country</div>
+            </a>
+        </div>*@
+        
+
 </div>
 
