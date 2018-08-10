@@ -29,8 +29,8 @@
                 </div>
             </div>
         </div>*@
-    <div class="container-fluid">        
-            <img src="~/aggrenews.png"/>        
+    <div class="container-fluid">
+        <img src="~/aggrenews.png" />
     </div>
     <div class="container-fluid body-content">
         @RenderBody()
@@ -46,19 +46,21 @@
 
     <script type="text/javascript">
 
-        //$(function () {
-        //    $('.img-fluid').hover(function () {
-        //        $('a > .mylink').show();
-        //    }, function () {
-        //        $('a > .mylink').hide();
-        //    });
-        //});
-
         $(function () {
-            //$.getJSON('/Home/GetCountries', function (data) {
-            //    alert(data.data);
-            //    console.log(data);                
-            //}
+
+            var currentCountry = 'GB';
+            var currentDuration = 'Last 3 Hours';
+            var currentResults = 50;            
+            var currentPage = 1;
+
+            $(".btn-country:first-child").text(currentCountry);
+            $(".btn-country:first-child").val(currentCountry);
+
+            $(".btn-duration:first-child").text(currentDuration);
+            $(".btn-duration:first-child").val(3);
+
+            $(".btn-results:first-child").text(currentResults);
+            $(".btn-results:first-child").val(currentResults);
 
             $.ajax({
                 type: "GET",
@@ -66,41 +68,80 @@
                 //contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 contentType: false,
-                processData: false,  
-                success: function (response) {                    
+                processData: false,
+                success: function (response) {
                     $.each(response.data, function (d) {
                         //<a class="dropdown-item" href="#">Action</a>
-                        var div_data = "<a class='dropdown-item' style='font-weight:bold' href=/Home/Index/?country=" + response.data[d] + ">" + response.data[d] + "</a>";
+                        var div_data = "<a class='dropdown-item' style='font-weight:bold' href=''>" + response.data[d] + "</a>";
+
+                        //if (response.data[d] == currentCountry) {
+                        //    div_data = "<a class='dropdown-item active' style='font-weight:bold' href=''>" + response.data[d] + "</a>";
+                        //}
+
                         $(div_data).appendTo('.menu-country');
                     });
                 }
             });
 
 
-            $(".menu-country").on('click', 'a', function () {
+            $(".menu-country").on('click', 'a', function (event) {
+                event.preventDefault();
+
                 $(".btn-country:first-child").text($(this).text());
                 $(".btn-country:first-child").val($(this).text());
+
+                var x = $(this).text();
+
+                currentCountry = x;
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetArticles","Home")?country=" + currentCountry +"&duration="+currentDuration+"&results="+currentResults+"&page="+currentPage,
+                    //contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data);
+                        $(".articlespartial").html(data);
+                    }
+                });
             });
-            $(".menu-duration").on('click', 'a', function () {
+
+
+            $(".menu-duration").on('click', 'a', function (event) {
+                 event.preventDefault();
+
                 $(".btn-duration:first-child").text($(this).text());
                 $(".btn-duration:first-child").val($(this).text());
+                                
+                var d = $(this).val();                
+
+                currentDuration = d;
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetArticles","Home")?country="+currentCountry+"&duration="+currentDuration+"&results="+currentResults+"&page="+currentPage,
+                    //contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data);
+                        $(".articlespartial").html(data);
+                    }
+                });
+
             });
+
+
+
             $(".menu-results").on('click', 'a', function () {
                 $(".btn-results:first-child").text($(this).text());
                 $(".btn-results:first-child").val($(this).text());
             });
 
-            //},
-            //    failure: function (response) {
-            //        alert(response.responseText);
-            //    },
-            //    error: function (response) {
-            //        alert(response.responseText);
-            //    }
-            //);
         });
-
-
 
     </script>
 

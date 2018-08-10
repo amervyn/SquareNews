@@ -49,9 +49,18 @@
         $(function () {
 
             var currentCountry = 'GB';
+            var currentDuration = 'Last 3 Hours';
+            var currentResults = 50;            
+            var currentPage = 1;
 
             $(".btn-country:first-child").text(currentCountry);
             $(".btn-country:first-child").val(currentCountry);
+
+            $(".btn-duration:first-child").text(currentDuration);
+            $(".btn-duration:first-child").val(3);
+
+            $(".btn-results:first-child").text(currentResults);
+            $(".btn-results:first-child").val(currentResults);
 
             $.ajax({
                 type: "GET",
@@ -65,9 +74,9 @@
                         //<a class="dropdown-item" href="#">Action</a>
                         var div_data = "<a class='dropdown-item' style='font-weight:bold' href=''>" + response.data[d] + "</a>";
 
-                        if (response.data[d] == currentCountry) {
-                            div_data = "<a class='dropdown-item active' style='font-weight:bold' href=''>" + response.data[d] + "</a>";
-                        }
+                        //if (response.data[d] == currentCountry) {
+                        //    div_data = "<a class='dropdown-item active' style='font-weight:bold' href=''>" + response.data[d] + "</a>";
+                        //}
 
                         $(div_data).appendTo('.menu-country');
                     });
@@ -82,15 +91,12 @@
                 $(".btn-country:first-child").val($(this).text());
 
                 var x = $(this).text();
-                var d = $(this).text();
-                var r = $(this).text();
-                var p = $(this).text();
 
                 currentCountry = x;
 
                 $.ajax({
                     type: "GET",
-                    url: "@Url.Action("GetArticles","Home")?country="+x+"&duration="+d+"&results="+r+"&page="+p,
+                    url: "@Url.Action("GetArticles","Home")?country=" + currentCountry +"&duration="+currentDuration+"&results="+currentResults+"&page="+currentPage,
                     //contentType: "application/json; charset=utf-8",
                     dataType: "html",
                     contentType: false,
@@ -103,10 +109,33 @@
             });
 
 
-            $(".menu-duration").on('click', 'a', function () {
+            $(".menu-duration").on('click', 'a', function (event) {
+                 event.preventDefault();
+
                 $(".btn-duration:first-child").text($(this).text());
                 $(".btn-duration:first-child").val($(this).text());
+                                
+                var d = $(this).val();                
+
+                currentDuration = d;
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetArticles","Home")?country="+currentCountry+"&duration="+currentDuration+"&results="+currentResults+"&page="+currentPage,
+                    //contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data);
+                        $(".articlespartial").html(data);
+                    }
+                });
+
             });
+
+
+
             $(".menu-results").on('click', 'a', function () {
                 $(".btn-results:first-child").text($(this).text());
                 $(".btn-results:first-child").val($(this).text());

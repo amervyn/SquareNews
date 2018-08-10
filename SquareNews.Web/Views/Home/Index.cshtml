@@ -7,7 +7,7 @@
 @*<h5 style="color:darkblue; font-weight:bold; float:right">@Model.TotalResults articles</h5>*@
 
 <div class="col-md-4">
-    <div class="btn-group mr-3">
+    <div class="d-none d-sm-inline btn-group mr-3">
         <button class="btn btn-primary btn-lg dropdown-toggle btn-country" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Country
         </button>
@@ -15,8 +15,8 @@
         </div>
     </div>
 
-    <div class="btn-group mr-3">
-        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="d-none d-sm-inline btn-group mr-3">
+        <button class="btn btn-primary btn-lg dropdown-toggle btn-duration hidden-md hidden-sm hidden-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Duration
         </button>
         <div class="dropdown-menu menu-duration" aria-labelledby="dropdownMenuLink">
@@ -28,8 +28,8 @@
         </div>
     </div>
 
-    <div class="btn-group">
-        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="d-none d-sm-inline btn-group">
+        <button class="btn btn-primary btn-lg dropdown-toggle btn-results" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Results
         </button>
         <div class="dropdown-menu menu-results" aria-labelledby="dropdownMenuLink">
@@ -40,7 +40,24 @@
             <a class="dropdown-item" style="font-weight:bold" href="/Home/GetArticles/">500</a>
         </div>
     </div>
+</div>
 
+
+<a class="d-sm-none btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Filter
+</a>
+
+<a class="d-sm-none btn btn-info float-right" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Sort
+</a>
+
+
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <a class="btn btn-sm btn-primary">Country</a>
+        <br />
+        <a class="btn btn-sm btn-primary">Duration</a>
+    </div>
 </div>
 
 <br /><br />
@@ -51,7 +68,7 @@
 
 
     @*@Html.Partial("_ArticlePartial", Model.Articles)*@
-    
+
     <div class="articlespartial">
 
         @Html.Action("GetArticles", "Home")
@@ -70,7 +87,7 @@
                 <div style="position: absolute; top: 8px; left: 16px; background-color:white;color:black; font-weight:bold; font-size:16pt">@Model.Articles[i].Country</div>
             </a>
         </div>*@
-        
+
 
 </div>
 
