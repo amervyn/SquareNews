@@ -78,6 +78,11 @@ namespace SquareNews.Api.Services
             return null;
         }
 
+        public object RunSqlCommand()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(ArticleResult obj)
         {
             return false;

@@ -4,7 +4,7 @@
     ViewBag.Title = "SquareNews.com";
 }
 
-@*<h5 style="color:darkblue; font-weight:bold; float:right">@Model.TotalResults articles</h5>*@
+@*<h5 style="color:darkblue; font-weight:bold; float:right">@Model.TotalResults articles</h5> d-none d-sm-inline    *@
 
 <div class="col-md-4">
     <div class="d-none d-sm-inline btn-group mr-3">
@@ -47,7 +47,7 @@
     Filter
 </a>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobilesort">
+<button type="button" class="d-sm-none btn btn-primary" data-toggle="modal" data-target="#mobilesort">
     Sort
 </button>
 
@@ -72,7 +72,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="radio" name="options" id="option1"> Option 1 <br/>
+                <input type="radio" name="options" id="option1"> Option 1 <br />
                 <input type="radio" name="options" id="option2"> Option 2 <br />
                 <input type="radio" name="options" id="option3"> Option 3 <br />
             </div>

@@ -98,5 +98,10 @@ namespace SquareNews.Lib.Repository
         {
             throw new System.NotImplementedException();
         }
+
+        public object RunSqlCommand()
+        {
+            return new List<string>();
+        }
     }
 }

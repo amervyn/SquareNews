@@ -65,5 +65,10 @@ namespace SquareNews.Lib.Repository
         {
             throw new NotImplementedException();
         }
+
+        public object RunSqlCommand()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

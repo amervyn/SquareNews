@@ -31,7 +31,7 @@ namespace SquareNews.Lib.Aggregation
         private int _resultsRemaining = 0;
         private int _newsApiPage = 1;
         private Countries _newsApiCountry=Countries.GB;
-        private string _apiLookupKey = "1";
+        private string _apiLookupKey = string.Empty;
         private Logger _logger = LogManager.GetCurrentClassLogger();
 
         public PublicApiCaller()
@@ -46,7 +46,21 @@ namespace SquareNews.Lib.Aggregation
         {
             _logger.Info("Calling public api services");
 
-            _apiLookupKey = _apiLookupKey == "1" ? "2" : "1";
+            switch(_apiLookupKey)
+            {
+                case "1":
+                    _apiLookupKey = "2";
+                    break;
+                case "2":
+                    _apiLookupKey = "1002";
+                    break;
+                case "1002":
+                    _apiLookupKey = "1";
+                        break;
+                default:
+                    _apiLookupKey = "1";
+                    break;
+            }
 
             await UpdateNewsApiSources();
 
@@ -63,6 +77,8 @@ namespace SquareNews.Lib.Aggregation
 
             if (localSource == null)
                 return false;
+
+            _logger.Info("Using APIKEY: " + localSource.ApiKey);
 
             var newssources = "https://newsapi.org/v2/sources?apiKey=" + localSource.ApiKey; //"7ccec5269a994497a486934b8fa1009d";//"5e7564559c884718a1a1cd8955d0f767";
 

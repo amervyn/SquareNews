@@ -23,11 +23,18 @@ namespace SquareNews.Api.Controllers
         // GET: api/NewsSources
         public IHttpActionResult Get()
         {
-            var result = new List<NewsApiSource>();
+            //var result = new List<NewsApiSource>();
 
-            result = _sourceRepository.GetAll(DateTime.MinValue, 0);
+            var result = new List<string>();
 
-            return Json(result);
+            //result = _sourceRepository.GetAll(DateTime.MinValue, 0);
+
+            result = _sourceRepository.RunSqlCommand() as List<string>;
+
+            if(result!=null)
+                return Json(result);
+
+            return Json(new List<string>());
         }
 
         // GET: api/NewsSources/5

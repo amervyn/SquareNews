@@ -112,7 +112,7 @@ namespace SquareNews.Web.Controllers
 
 
         [HttpGet]
-        public JsonResult GetCountries()
+        public async Task<JsonResult> GetCountries()
         {
             var result = new List<NewsApiSource>();
 
@@ -120,9 +120,11 @@ namespace SquareNews.Web.Controllers
 
             var request = new RestRequest("api/NewsSources", Method.GET);
 
-            var queryResult = api.Execute<List<NewsApiSource>>(request).Data;
+            var queryResult = await api.ExecuteTaskAsync<List<string>>(request);
 
-            return Json(new { data = queryResult.GroupBy(c=>c.Country).Select(c => c.First()).OrderBy(c=>c.Country).Select(c=>c.Country.ToUpper()).ToList() }, JsonRequestBehavior.AllowGet);
+            //return Json(new { data = queryResult.GroupBy(c=>c.Country).Select(c => c.First()).OrderBy(c=>c.Country).Select(c=>c.Country.ToUpper()).ToList() }, JsonRequestBehavior.AllowGet);
+
+            return Json(new { data = queryResult.Data}, JsonRequestBehavior.AllowGet);
         }
         public ActionResult About()
         {

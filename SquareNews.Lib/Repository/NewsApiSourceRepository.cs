@@ -81,6 +81,16 @@ namespace SquareNews.Lib.Repository
             throw new System.NotImplementedException();
         }
 
+        public object RunSqlCommand()
+        {
+            using (DatabaseFactory.DatabaseConnection)
+            {
+                string readAll = "select distinct Upper(country) as country from dbo.Article order by 1";
+
+                return _dbFactory.DatabaseConnection.Query<string>(readAll).ToList();
+            }
+        }
+
         public bool Update(NewsApiSource obj)
         {
             throw new System.NotImplementedException();

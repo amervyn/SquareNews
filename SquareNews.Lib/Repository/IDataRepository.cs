@@ -15,5 +15,6 @@ namespace SquareNews.Lib.Repository
         List<T> GetAll(DateTime fromDate, int rowCount, string country = null, int rowStart = 1);
         bool Update(T obj);
         void Delete(string key);
+        object RunSqlCommand();
     }
 }
