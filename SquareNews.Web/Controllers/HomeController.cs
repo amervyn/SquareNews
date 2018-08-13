@@ -26,7 +26,11 @@ namespace SquareNews.Web.Controllers
         [HttpGet]
         public ActionResult GetArticles()
         {
-            return PartialView("_ArticlePartial", FetchArticles().Articles);
+            if (FetchArticles() != null)
+                return PartialView("_ArticlePartial", FetchArticles().Articles);
+
+
+            return PartialView("_ArticlePartial", new List<NewsArticle>());
         }
 
 
@@ -124,7 +128,7 @@ namespace SquareNews.Web.Controllers
 
             //return Json(new { data = queryResult.GroupBy(c=>c.Country).Select(c => c.First()).OrderBy(c=>c.Country).Select(c=>c.Country.ToUpper()).ToList() }, JsonRequestBehavior.AllowGet);
 
-            return Json(new { data = queryResult.Data}, JsonRequestBehavior.AllowGet);
+            return Json(new { data = queryResult.Data }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult About()
         {
