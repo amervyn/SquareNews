@@ -8,7 +8,6 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\SquareNews.Lib.dll.config
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NewsAPI.xml
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csprojResolveAssemblyReference.cache
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csproj.CoreCompileInputs.cache
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csproj.CopyComplete
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.exe
@@ -37,3 +36,4 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.xml
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.config
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.dll
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Processor\bin\Debug\NLog.xml
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Processor\obj\Debug\SquareNews.Processor.csprojAssemblyReference.cache

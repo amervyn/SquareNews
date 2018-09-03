@@ -227,24 +227,24 @@ namespace SquareNews.Lib.Aggregation
             if (response.Status == Statuses.Ok)
             {
                 _resultsRemaining = response.TotalResults - (_newsApiPage * pageSize);
-
+                
                 foreach (var a in response.Articles)
                 {
                     var article = new NewsArticle
                     {
                         Headline = a.Title,
                         SourceId = 1,
-                        NewsApiSourceId = a.Source.Id,
+                        NewsApiSourceId = a.Source.Id,                        
                         Description = a.Description,
                         IsVisible = true,
                         ImageUrl = a.UrlToImage,
                         Url = a.Url,
                         CreatedOn = DateTime.Now,
                         Country=_newsApiCountry.ToString().ToLower(),
-                        PublishedOn = a.PublishedAt.HasValue ? a.PublishedAt.Value : DateTime.Now
+                        PublishedOn = a.PublishedAt ?? DateTime.Now
                     };
 
-                    _logger.Info("Adding article: " + a.Title);
+                    _logger.Info("Adding article: " + a.Title + " from Source " + a.Source.Name);
 
                     _newsArticles.Add(article);
                 }
@@ -280,7 +280,7 @@ namespace SquareNews.Lib.Aggregation
                 foreach (var a in response.Articles)
                 {
                     var article = new NewsArticle
-                    {
+                    {                        
                         Headline = a.Title,
                         SourceId = 1,
                         NewsApiSourceId = a.Source.Id,
@@ -292,7 +292,7 @@ namespace SquareNews.Lib.Aggregation
                         PublishedOn = a.PublishedAt.HasValue ? a.PublishedAt.Value : DateTime.Now
                     };
 
-                    _logger.Info("Adding article: " + a.Title);
+                    _logger.Info("Adding article: " + a.Title + " from Source " + a.Source.Name);
 
                     _newsArticles.Add(article);
                 }

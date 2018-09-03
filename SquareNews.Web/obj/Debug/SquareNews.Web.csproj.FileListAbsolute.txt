@@ -128,7 +128,6 @@ C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NewsAPI.xml
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\NLog.xml
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\Dapper.pdb
 C:\Users\anto.mervyn\source\repos\SquareNews\SquareNews.Web\bin\RestSharp.dll
-C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.csprojResolveAssemblyReference.cache
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.csproj.CoreCompileInputs.cache
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\NLog.config
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\ApplicationInsights.config
@@ -259,3 +258,4 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\bin\Dapper.pdb
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.csproj.CopyComplete
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.dll
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Web\obj\Debug\SquareNews.Web.csprojAssemblyReference.cache
