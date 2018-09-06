@@ -1,0 +1,14 @@
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.deps.json
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.runtimeconfig.json
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.runtimeconfig.dev.json
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.csproj.CoreCompileInputs.cache
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.AssemblyInfoInputs.cache
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.AssemblyInfo.cs
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.csprojAssemblyReference.cache
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.csproj.CopyComplete
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Processor\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Processor.pdb

@@ -42,3 +42,4 @@ C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\obj\Debug\SquareNews.Lib.cs
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\obj\Debug\SquareNews.Lib.csproj.CopyComplete
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\obj\Debug\SquareNews.Lib.dll
 C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\obj\Debug\SquareNews.Lib.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.Lib\obj\Debug\SquareNews.Lib.csprojAssemblyReference.cache

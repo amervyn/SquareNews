@@ -1,0 +1,8 @@
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.deps.json
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.csproj.CoreCompileInputs.cache
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.AssemblyInfoInputs.cache
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.AssemblyInfo.cs
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\bin\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.pdb
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.dll
+C:\Users\Anto\source\repos\SquareNews\SquareNews.NetCore.Lib\obj\Debug\netcoreapp2.1\SquareNews.NetCore.Lib.pdb

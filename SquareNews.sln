@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareNews.Web", "SquareNew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareNews.Processor", "SquareNews.Processor\SquareNews.Processor.csproj", "{DCBC2672-15E7-4D80-828E-F621C492BE0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareNews.NetCore.Lib", "SquareNews.NetCore.Lib\SquareNews.NetCore.Lib.csproj", "{54CCBC17-B57D-48C1-A3D0-EB1ACF9E5460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareNews.NetCore.Processor", "SquareNews.NetCore.Processor\SquareNews.NetCore.Processor.csproj", "{9AB818B2-AC45-4521-8284-3B442C48AAC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{DCBC2672-15E7-4D80-828E-F621C492BE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCBC2672-15E7-4D80-828E-F621C492BE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCBC2672-15E7-4D80-828E-F621C492BE0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54CCBC17-B57D-48C1-A3D0-EB1ACF9E5460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54CCBC17-B57D-48C1-A3D0-EB1ACF9E5460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54CCBC17-B57D-48C1-A3D0-EB1ACF9E5460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54CCBC17-B57D-48C1-A3D0-EB1ACF9E5460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AB818B2-AC45-4521-8284-3B442C48AAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB818B2-AC45-4521-8284-3B442C48AAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB818B2-AC45-4521-8284-3B442C48AAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB818B2-AC45-4521-8284-3B442C48AAC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
