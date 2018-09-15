@@ -7,32 +7,38 @@
         @if (Model.Count >= 1)
         {
             <div class="col-sm-4">
-                <a href="@Model[0].Url">
-                    <img class="rounded img-fluid loading" src="@Model[0].ImageUrl">
+                <a href="@Model[0].Url" class="article">
+                    <img class="rounded img-fluid loading" src="@Model[0].ImageUrl" onerror="this.src='../../noimage.jpg'">
                     <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[0].Headline</div>
                     @*<div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[0].Country</div>*@
-                    <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[0].Description</div>
+                    <div class="overlay">
+                        <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[0].Description</div>
+                    </div>
                 </a>
             </div>
 
             if (Model.Count >= 2)
             {
                 <div class="col-sm-4">
-                    <a href="@Model[1].Url">
-                        <img class="rounded img-fluid loading" src="@Model[1].ImageUrl">
+                    <a href="@Model[1].Url" class="article">
+                        <img class="rounded img-fluid loading" src="@Model[1].ImageUrl" onerror="this.src='../../noimage.jpg'">
                         <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[1].Headline</div>
                         @*<div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[1].Country</div>*@
-                        <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[1].Description</div>
+                        <div class="overlay">
+                            <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[1].Description</div>
+                        </div>
                     </a>
                 </div>
                 if (Model.Count == 3)
                 {
                     <div class="col-sm-4">
-                        <a href="@Model[2].Url">
-                            <img class="rounded img-fluid loading" src="@Model[2].ImageUrl">
+                        <a href="@Model[2].Url" class="article">
+                            <img class="rounded img-fluid loading" src="@Model[2].ImageUrl" onerror="this.src='../../noimage.jpg'">
                             <div class="text-left align-text-bottom" style="background-color:aqua;color:black;font-weight:bold">@Model[2].Headline</div>
                             @*<div class="text-left align-text-top" style="background-color:black;color:white;font-weight:bold">@Model[2].Country</div>*@
-                            <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[2].Description</div>
+                            <div class="overlay">
+                                <div class="text-left align-text-top mylink" style="background-color:black;color:white">@Model[2].Description</div>
+                            </div>
                         </a>
                     </div>
                 }
